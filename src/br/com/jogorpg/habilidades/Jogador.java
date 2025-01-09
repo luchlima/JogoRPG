@@ -2,24 +2,28 @@ package br.com.jogorpg.habilidades;
 
 import br.com.jogorpg.personagens.Inicial;
 
-public class Habilidades extends Inicial {
+public class Jogador{
     protected double saude;
     protected double ataque;
     protected double defesa;
-    protected String armaArqueiro;
-    protected int flexas;
 
-    public void ferramentas(String armaArqueiro, int flexas){
-        this.armaArqueiro = armaArqueiro;
-        this.flexas = flexas;
-    }
 
-    public Habilidades(double saude, double ataque, double defesa){
+    public Jogador(double saude, double ataque, double defesa){
         this.saude = saude;
         this.ataque = ataque;
         this.defesa = defesa;
     }
+    public double getSaude() {
+        return saude;
+    }
 
+    public double getAtaque() {
+        return ataque;
+    }
+
+    public double getDefesa() {
+        return defesa;
+    }
 
     public void receberDano() {
         double porcentagemDano = 25;
@@ -38,23 +42,6 @@ public class Habilidades extends Inicial {
         }
         System.out.println("Você recebeu " + dano + " de dano. Saúde restante: " + getSaude());
     }
-    public double getSaude() {
-        return saude;
-    }
 
-    public double getAtaque() {
-        return ataque;
-    }
 
-    public double getDefesa() {
-        return defesa;
-    }
-
-    public String getArmaArqueiro() {
-        return armaArqueiro;
-    }
-
-    public int getFlexas() {
-        return flexas;
-    }
 }

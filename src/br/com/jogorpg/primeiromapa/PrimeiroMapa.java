@@ -31,18 +31,31 @@ public class PrimeiroMapa { // cada mapa terá um começo, meio e final com um b
                             e finalmente confrontando o chefão na fortaleza no centro da vila.
                 ============================================================================================
                 """);
+        System.out.println("""
+                ============================================================================================
+                      Durante a sua jornada pela vila, encontrará recursos para ajudar em sua batalha!
+                ============================================================================================
+                """);
+
+        primeiroVilao();
     }
 
+    public void primeiroVilao(){
+        ZulGor zulGor = new ZulGor("ZulGor", 50, 12, 3);
 
-
-
-
-
-
-    public void msgMeio(){
-
-    }
-    public void msgFinal(){
-
+        System.out.println("""
+                ============================================================================================
+                Você entra na Vila de Gar'Zhul, onde o silêncio é quebrado apenas pelos ecos de passos e o 
+                   som distante de tambores de guerra. Uma figura imponente surge das sombras. Zul'Gor, 
+                       o Feiticeiro Sombrio, com seu manto negro e bastão misterioso exalam poder.
+                         Com um sorriso ameaçador, ele ergue seu bastão e uma aura de magia 
+                               negra envolve o ambiente. "Prepare-se, pois o que você  
+                                   enfrentará aqui não é apenas um vilão, mas a 
+                                        própria escuridão que consome tudo 
+                                                  ao seu redor."
+                ============================================================================================
+                                            A batalha com Zul'Gor começa!
+                ============================================================================================
+                """);
     }
 }

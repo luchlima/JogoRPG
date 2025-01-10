@@ -1,6 +1,12 @@
 package br.com.jogorpg.primeiromapa;
 
-public class PrimeiroMapa { // cada mapa terá um começo, meio e final com um boss.
+import br.com.jogorpg.habilidades.Jogador;
+
+import java.util.Scanner;
+
+public class PrimeiroMapa {
+    Scanner scanner = new Scanner(System.in);
+
     public void msgComeco(){
         System.out.println("""
                                         ========================================
@@ -41,7 +47,6 @@ public class PrimeiroMapa { // cada mapa terá um começo, meio e final com um b
     }
 
     public void primeiroVilao(){
-        ZulGor zulGor = new ZulGor("ZulGor", 50, 12, 3);
 
         System.out.println("""
                 ============================================================================================
@@ -57,5 +62,23 @@ public class PrimeiroMapa { // cada mapa terá um começo, meio e final com um b
                                             A batalha com Zul'Gor começa!
                 ============================================================================================
                 """);
+        primeiraBatalha();
+    }
+
+    public void primeiraBatalha(){
+        Jogador jogador = new Jogador();
+        ZulGor zulGor = new ZulGor("Zul'Gor", 150, 10, 15);
+        while (jogador.estaVivo() && zulGor.estaVivo()){
+            System.out.println("""
+                    ============================================================================================
+                                Escolha a sua habilidade antes que o Zul'Gor lhe ataque:
+                                                    1 - Ataque
+                                                    2 - Defesa
+                                                    3 - Correr da Batalha
+                    ============================================================================================
+                    """);
+            int escolha = scanner.nextInt();
+
+        }
     }
 }

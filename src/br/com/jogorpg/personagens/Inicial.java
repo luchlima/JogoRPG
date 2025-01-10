@@ -1,6 +1,5 @@
 package br.com.jogorpg.personagens;
 
-import br.com.jogorpg.habilidades.Jogador;
 
 import java.util.Scanner;
 
@@ -62,7 +61,8 @@ public class Inicial{
             int classeEscolhida = leitura.nextInt();
             switch (classeEscolhida){
                 case 1:
-                    Jogador guerreiro = new Jogador(10, 7.5, 8.5);
+                    Guerreiro guerreiro = new Guerreiro();
+                    guerreiro.guerreiroScore(100, 28, 20);
                     System.out.println("=============================================================");
                     System.out.println("Seja muito bem vindo " + getNickJogador() + ", Você escolheu a classe Guerreiro!");
                     System.out.println("=============================================================");
@@ -74,9 +74,9 @@ public class Inicial{
                     guerreiroGo.msgGuerreiro();
                     break;
                 case 2:
-                    Jogador arqueiro = new Jogador(10, 8.5, 6.5);
-                    Arqueiro arqueiroFerramenta = new Arqueiro();
-                    arqueiroFerramenta.ferramentas("Arco", 12);
+                    Arqueiro arqueiro = new Arqueiro();
+                    arqueiro.arqueiroScore(100, 28, 20);
+                    arqueiro.ferramentas("Arco", 12);
                     System.out.println("=============================================================");
                     System.out.println("Seja muito bem vindo " + getNickJogador() + ", Você escolheu a classe Arqueiro!");
                     System.out.println("=============================================================");
@@ -84,12 +84,13 @@ public class Inicial{
                     System.out.println("Vida: " + arqueiro.getSaude());
                     System.out.println("Ataque: " + arqueiro.getAtaque());
                     System.out.println("Defesa: " + arqueiro.getDefesa());
-                    System.out.println("Item de batalha: " + arqueiroFerramenta.getArmaArqueiro() + " com " + arqueiroFerramenta.getFlechas() + " flexas.");
+                    System.out.println("Item de batalha: " + arqueiro.getArmaArqueiro() + " com " + arqueiro.getFlechas() + " flechas.");
                     Arqueiro arqueiroGo = new Arqueiro();
                     arqueiroGo.msgArqueiro();
                     break;
                 case 3:
-                    Jogador lanceiro = new Jogador(10, 6.5, 8);
+                    Lanceiro lanceiro = new Lanceiro();
+                    lanceiro.lanceiroScore(100, 28, 20);
                     System.out.println("=============================================================");
                     System.out.println("Seja muito bem vindo " + getNickJogador() + ", Você escolheu a classe Lanceiro!");
                     System.out.println("=============================================================");

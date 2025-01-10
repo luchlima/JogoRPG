@@ -1,12 +1,34 @@
 package br.com.jogorpg.personagens;
 
+import br.com.jogorpg.habilidades.Jogador;
 import br.com.jogorpg.primeiromapa.PrimeiroMapa;
 
-import java.util.Random;
+public class Arqueiro extends Jogador {
+    PrimeiroMapa primeiroMapa = new PrimeiroMapa();
 
-public class Arqueiro{
     private String armaArqueiro;
     private int flechas;
+    protected double saude;
+    protected double ataque;
+    protected double defesa;
+
+
+    public void arqueiroScore(double saude, double ataque, double defesa){
+        this.saude = saude;
+        this.ataque = ataque;
+        this.defesa = defesa;
+    }
+    public double getSaude() {
+        return saude;
+    }
+
+    public double getAtaque() {
+        return ataque;
+    }
+
+    public double getDefesa() {
+        return defesa;
+    }
 
     public void ferramentas(String armaArqueiro, int flechas){
         this.armaArqueiro = armaArqueiro;
@@ -21,21 +43,6 @@ public class Arqueiro{
         return flechas;
     }
 
-    public void usarFlecha(){
-        if (flechas > 0){
-            flechas --;
-            System.out.println("Flecha disparada! Flechas restantes: " + flechas);
-
-            Random random = new Random();
-            int chanceDeAcerto = random.nextInt(100); // Simulação de acerto entre 0 e 99;
-            if (chanceDeAcerto < 20){
-                System.out.println("Você acertou a cabeça!");
-            }
-        } else {
-            System.out.println("Sem flechas!");
-        }
-    }
-
     public void msgArqueiro(){
         System.out.println("""
                 ===============================================================================================
@@ -43,7 +50,9 @@ public class Arqueiro{
                 Ele é ágil e pode se mover rapidamente para evitar ataques, além de ter um grande alcance.
                 ===============================================================================================
                 """);
-
+        primeiroMapa.msgComeco();
     }
+
+
 
 }

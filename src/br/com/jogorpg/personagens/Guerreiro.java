@@ -1,6 +1,15 @@
 package br.com.jogorpg.personagens;
 
-public class Guerreiro{
+import br.com.jogorpg.habilidades.Jogador;
+
+public class Guerreiro extends Jogador{
+    public Guerreiro(String nome) {
+        super(nome, 100, 30, 20, "Guerreiro");
+    }
+
+    public void habilidadeEspecial() {
+        System.out.println("Guerreiro usa habilidade especial!");
+    }
 
     public void msgGuerreiro(){
         System.out.println("""

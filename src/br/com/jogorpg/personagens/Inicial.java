@@ -1,13 +1,12 @@
 package br.com.jogorpg.personagens;
-
 import br.com.jogorpg.habilidades.Jogador;
+import br.com.jogorpg.primeiromapa.PrimeiroMapa;
 
 import java.util.Scanner;
 
 public class Inicial{
     Scanner leitura = new Scanner(System.in);
     private String nickJogador;
-
 
     public void setNickJogador(String nickJogador) {
         this.nickJogador = nickJogador;
@@ -22,7 +21,7 @@ public class Inicial{
         leitura.nextLine();
         setNickJogador(leitura.nextLine());
         System.out.println("Vamos começar nossa jornada, " + getNickJogador() + "!");
-        criacaoPersonagem();
+        opcaoPersonagem();
     }
     public void msgInicial(){
         System.out.println("""
@@ -50,59 +49,40 @@ public class Inicial{
         }
     }
 
-    public void criacaoPersonagem(){
+    public void opcaoPersonagem() {
         System.out.println("""
                 Escolha a sua classe:
                      1 - Guerreiro
                      2 - Arqueiro
                      3 - Lanceiro
                 """);
+        criacaoPersonagem();
+    }
+    public void criacaoPersonagem(){
+        int classeEscolhida = leitura.nextInt();
+        String nomeJogador = getNickJogador();
+
+        Jogador jogador = null;
 
         while (true){
-            int classeEscolhida = leitura.nextInt();
             switch (classeEscolhida){
                 case 1:
-                    Jogador guerreiro = new Jogador(10, 7.5, 8.5);
-                    System.out.println("=============================================================");
-                    System.out.println("Seja muito bem vindo " + getNickJogador() + ", Você escolheu a classe Guerreiro!");
-                    System.out.println("=============================================================");
-                    System.out.println("    Status:");
-                    System.out.println("Vida: " + guerreiro.getSaude());
-                    System.out.println("Ataque: " + guerreiro.getAtaque());
-                    System.out.println("Defesa: " + guerreiro.getDefesa());
-                    Guerreiro guerreiroGo = new Guerreiro();
-                    guerreiroGo.msgGuerreiro();
+                    jogador = new Guerreiro(nomeJogador);
                     break;
                 case 2:
-                    Jogador arqueiro = new Jogador(10, 8.5, 6.5);
-                    Arqueiro arqueiroFerramenta = new Arqueiro();
-                    arqueiroFerramenta.ferramentas("Arco", 12);
-                    System.out.println("=============================================================");
-                    System.out.println("Seja muito bem vindo " + getNickJogador() + ", Você escolheu a classe Arqueiro!");
-                    System.out.println("=============================================================");
-                    System.out.println("    Status:");
-                    System.out.println("Vida: " + arqueiro.getSaude());
-                    System.out.println("Ataque: " + arqueiro.getAtaque());
-                    System.out.println("Defesa: " + arqueiro.getDefesa());
-                    System.out.println("Item de batalha: " + arqueiroFerramenta.getArmaArqueiro() + " com " + arqueiroFerramenta.getFlechas() + " flexas.");
-                    Arqueiro arqueiroGo = new Arqueiro();
-                    arqueiroGo.msgArqueiro();
+                    jogador = new Arqueiro(nomeJogador);
                     break;
                 case 3:
-                    Jogador lanceiro = new Jogador(10, 6.5, 8);
-                    System.out.println("=============================================================");
-                    System.out.println("Seja muito bem vindo " + getNickJogador() + ", Você escolheu a classe Lanceiro!");
-                    System.out.println("=============================================================");
-                    System.out.println("    Status:");
-                    System.out.println("Vida: " + lanceiro.getSaude());
-                    System.out.println("Ataque: " + lanceiro.getAtaque());
-                    System.out.println("Defesa: " + lanceiro.getDefesa());
-                    Lanceiro lanceiroGo = new Lanceiro();
-                    lanceiroGo.msgLanceiro();
+                    jogador = new Lanceiro(nomeJogador);
                     break;
                 default:
                     System.out.println("Escolha uma opção valida!");
+                    continue;
             }
+            PrimeiroMapa mapa = new PrimeiroMapa(jogador);
+            mapa.iniciarMapa();
+            break;
         }
     }
+
 }

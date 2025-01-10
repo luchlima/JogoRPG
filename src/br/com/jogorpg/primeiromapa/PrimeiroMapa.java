@@ -1,6 +1,24 @@
 package br.com.jogorpg.primeiromapa;
 
-public class PrimeiroMapa { // cada mapa terá um começo, meio e final com um boss.
+import br.com.jogorpg.habilidades.Jogador;
+import br.com.jogorpg.personagens.Inicial;
+
+import java.util.Scanner;
+
+public class PrimeiroMapa {
+    Scanner scanner = new Scanner(System.in);
+    private Jogador jogador;
+
+    public PrimeiroMapa(Jogador jogador){
+        this.jogador = jogador;
+    }
+
+    public void iniciarMapa(){
+        System.out.println("Bem-vindo ao Primeiro Mapa, " + jogador.getNome() + "!");
+        jogador.mostrarStatus();
+        msgComeco();
+    }
+
     public void msgComeco(){
         System.out.println("""
                                         ========================================
@@ -41,7 +59,6 @@ public class PrimeiroMapa { // cada mapa terá um começo, meio e final com um b
     }
 
     public void primeiroVilao(){
-        ZulGor zulGor = new ZulGor("ZulGor", 50, 12, 3);
 
         System.out.println("""
                 ============================================================================================
@@ -57,5 +74,69 @@ public class PrimeiroMapa { // cada mapa terá um começo, meio e final com um b
                                             A batalha com Zul'Gor começa!
                 ============================================================================================
                 """);
+        primeiraBatalha();
+    }
+
+
+
+    public void primeiraBatalha(){
+        ZulGor zulGor = new ZulGor();
+        Scanner scanner = new Scanner(System.in);
+        boolean defendendo = false; // variavel que indica se o jogador está se defendendo;
+
+        while (jogador.estaVivo() && zulGor.estaVivo()) {
+            System.out.println("""
+                ============================================================================================
+                            Escolha a sua habilidade antes que o Zul'Gor lhe ataque:
+                                                    1 - Ataque
+                                                    2 - Defesa
+                                                    3 - Correr da Batalha
+                ============================================================================================
+                """);
+            int escolha = scanner.nextInt();
+            switch (escolha) {
+                case 1:
+                    // Jogador ataca
+                    int dano = jogador.getAtaque() - zulGor.getDefesa();
+                    if (dano > 0) {
+                        zulGor.setSaude(zulGor.getSaude() - dano);
+                        System.out.println("Você atacou Zul'Gor e causou " + dano + " de dano.");
+                    } else {
+                        System.out.println("Seu ataque foi defendido por Zul'Gor!");
+                    }
+                    break;
+
+                case 2:
+                    defendendo = true;
+                    System.out.println("Você se preparou para se defender! Sua defesa aumentou temporariamente.");
+                    break;
+                case 3:
+                    // Jogador tenta fugir
+                    System.out.println("Você tentou correr da batalha...");
+                    int chanceFuga = (int) (Math.random() * 100);  // Gera um número aleatório para chance de fuga
+                    if (chanceFuga < 50) {
+                        System.out.println("Você fugiu com sucesso!");
+                        return;  // Fim da batalha, jogador fugiu
+                    } else {
+                        System.out.println("Você não conseguiu fugir! Zul'Gor te alcançou!");
+                        // Se a fuga falhar, o vilão ataca
+                        zulGor.atacar(jogador);
+                    }
+                    break;
+
+                default:
+                    System.out.println("Escolha uma opção válida!");
+                    continue;
+            }
+            // Se o vilão ainda estiver vivo, ele ataca o jogador
+            if (zulGor.estaVivo()) {
+                zulGor.atacar(jogador);
+            }
+        }
+        if (!jogador.estaVivo()) {
+            System.out.println("Você foi derrotado por Zul'Gor!");
+        } else {
+            System.out.println("Você derrotou Zul'Gor!");
+        }
     }
 }

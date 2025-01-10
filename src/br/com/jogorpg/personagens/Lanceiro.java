@@ -1,6 +1,16 @@
 package br.com.jogorpg.personagens;
 
-public class Lanceiro {
+import br.com.jogorpg.habilidades.Jogador;
+
+public class Lanceiro extends Jogador{
+    public Lanceiro(String nome) {
+        super(nome, 90, 28, 18, "Lanceiro");
+    }
+
+    public void ataqueLongo() {
+        System.out.println("Lanceiro realiza um ataque à distância!");
+    }
+
     public void msgLanceiro(){
         System.out.println("""
                 ====================================================================================================
@@ -8,6 +18,5 @@ public class Lanceiro {
                 Ele é especializado em ataques rápidos e precisos e é capaz de atacar vários inimigos de uma só vez.
                 ====================================================================================================
                 """);
-
     }
 }
